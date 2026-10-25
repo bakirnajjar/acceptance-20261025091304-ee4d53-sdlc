@@ -1,0 +1,16 @@
+# Requirements analysis: evidence assessment
+
+## Scope and evidence
+
+- Pinned story: `user_story` (`characters 0-16000`; complete, `next_offset: null`). Build a small password-reset application using the supplied sign-in wireframe and curated recovery standard, with synthetic accounts, an in-memory notification sink, documented production limitations and automated tests. Do not deploy or add deployment workflows. No story end marker is present.
+- Supplied image: `attachment` `a4690c70-e0db-4bb7-b5c0-f0422127e023` (`sign-in-wireframe.png`). The visible wireframe shows a bordered sign-in card with heading "Sign in"; labeled "Email address" input with `name@example.com` placeholder; labeled "Password" input with masked placeholder; "Forgot password?" link; dark "Sign in" button; and "No account? Contact your administrator." footer. The attachment reader returns the image reference, not extracted text; these observations come from the pinned visible image. No acceptance attachment marker is visible.
+- Curated recovery standard: `knowledge` `46054aed-d642-45cb-ac91-e8bb053c4af6` (`v1, chunk 0`), from the run-matching account-recovery-standards library. ACC-STD-01 requires a forgot-password entry point, identical responses for existing and nonexistent accounts, and at most five reset requests per account per hour. ACC-STD-02 requires single-use reset links that expire 30 minutes after issuance and sign-out of every active session after reset. ACC-STD-03 requires notifying the account owner after each successful reset. Other returned libraries repeat the same excerpt but are not run-specific.
+- Approved prior stage outputs: none. Repository README describes a synthetic acceptance-test repository; it supplies no additional product requirements.
+
+## Analysis for the next phase
+
+Separate observable sign-in layout and flow, request privacy and rate limiting, reset-link validity and consumption, session invalidation, post-reset notification, synthetic-only account and in-memory notification boundaries, documentation, tests, and no-deployment constraints into atomic, traceable requirements. Preserve exact platform source references for story, attachment, and run-specific knowledge. Use Given/When/Then criteria without inventing password policy, notification transport, deployment behavior, or numerical limits beyond the standard.
+
+Potential non-blocking questions to record alongside explicit assumptions: the exact behavior of sign-in for synthetic accounts and the demo's session mechanism; handling and counting requests for nonexistent addresses while preserving indistinguishable responses; how an in-memory notification sink is inspected in tests; and what production limitations need to be explained beyond the explicitly non-production account and notification storage. Assume a small local demonstration constrained to synthetic accounts and in-memory notifications; do not claim production-grade persistence, delivery, or session infrastructure. The acceptance skill requires a final-contract assumption beginning `acceptance-20261025091304-ee4d53-skill-sentinel` and stating that the acceptance skill produced the output. There is no evidenced story end marker or attachment acceptance marker to copy into assumptions.
+
+No product outputs have been written in assessment. Planning and contract writing await plan approval.
