@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0",
+  "source_references": [
+    {
+      "source_type": "user_story",
+      "source_id": "user_story",
+      "locator": "characters 0-16000"
+    },
+    {
+      "source_type": "attachment",
+      "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023",
+      "locator": "sign-in-wireframe.png"
+    },
+    {
+      "source_type": "knowledge",
+      "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6",
+      "locator": "v1, chunk 0"
+    }
+  ],
+  "assumptions": [
+    "These are proposed delivery risks and verification activities, not observed defects, completed tests, measured likelihoods, or evidence of an implemented application.",
+    "The supplied image establishes only the observed sign-in page and card; it does not establish reset-page design, transport, persistence, password-complexity policy, or production architecture.",
+    "Only minimal local synthetic-account sign-in and session behavior is assumed to exercise the page and verify that a successful reset invalidates every active session; no production session infrastructure is implied.",
+    "Apply the five-per-account-per-hour limit to synthetic accounts while retaining identical existing/nonexistent request responses; no separate nonexistent-address threshold or counting rule is asserted.",
+    "A local, test-inspectable mechanism may expose synthetic reset links and in-memory notification records without email, SMS, or other external delivery.",
+    "A minimal reset-completion interaction changes the corresponding synthetic account password without assuming an unsupported complexity rule, numeric policy, failure wording, or extra sign-in-card control.",
+    "Production-limitations documentation must explain synthetic accounts and in-memory notifications and may name further implementation-specific limitations once known; it must not claim production readiness.",
+    "The approved predecessor identifiers are REQ-001 through REQ-021; its reader supplies no source-reference object, so no stage_output citation or locator is asserted."
+  ],
+  "open_questions": [
+    {
+      "question": "What minimal Sign in behavior and synthetic-account session representation will demonstrate invalidation of every active session?",
+      "blocking": false,
+      "context": "Only local demonstration behavior is assumed; no production session infrastructure is inferred."
+    },
+    {
+      "question": "How will attempts for nonexistent addresses be counted or throttled without disclosing account existence, and what defines an account key?",
+      "blocking": false,
+      "context": "Preserve identical request responses and the specified five-per-account-per-hour limit for synthetic accounts; do not invent a separate threshold for nonexistent addresses."
+    },
+    {
+      "question": "How will a reset link be accessible locally and the in-memory notification sink be inspected in tests?",
+      "blocking": false,
+      "context": "Assume only a local, test-inspectable mechanism, not actual email, SMS, or external delivery."
+    },
+    {
+      "question": "Which additional production limitations will be identified once implementation details are known?",
+      "blocking": false,
+      "context": "At minimum document synthetic accounts and in-memory notifications; do not assert unknown operational characteristics or production readiness."
+    },
+    {
+      "question": "What minimal reset-completion form, validation, and failure wording will be selected?",
+      "blocking": false,
+      "context": "The supplied image specifies the sign-in card only; do not invent a password-complexity rule, numeric policy, failure text, or extra sign-in-card control."
+    }
+  ],
+  "stage": "custom_document",
+  "stage_key": "acceptance_20261025091304_ee4d53_risk",
+  "summary": "Proposed password-reset delivery risk register: ten stable risks cover approved REQ-001 through REQ-021, with evidence-bounded mitigations and future verification; no implementation, test completion, or deployment is claimed.",
+  "sections": [
+    {
+      "heading": "Scope and priority interpretation",
+      "body": "This register covers the supplied sign-in wireframe, account-recovery standard ACC-STD-01 through ACC-STD-03, synthetic accounts, in-memory notifications, production limitations, automated tests, and the distinct no-deployment and no-deployment-workflow boundaries. Priorities translate the planning register's High to must and Medium to should as proposed verification order; they are not measured probability, actual severity, or a claim of an implemented defect. Categories group proposed risks, not evidence of existing architecture."
+    },
+    {
+      "heading": "Evidence and predecessor boundary",
+      "body": "Each item's source_references identifies only authorized original story, sign-in-wireframe.png, or run-matched curated standard evidence using its exact source ID and locator. The approved requirements_analysis predecessor provides REQ-001 through REQ-021 but no source-reference object: requirement_ids therefore link to those approved identifiers without inventing a stage_output locator. The image observations are limited to a white page, thin dark bordered card, bold Sign in heading, Email address and Password fields with name@example.com and masked-asterisks placeholders, blue underlined Forgot password? link, dark rectangular Sign in button, grey No account? Contact your administrator. footer, and no other visible controls. No reset-screen design is inferred."
+    },
+    {
+      "heading": "Approved requirement coverage",
+      "body": "REQ-001: RA4A9E-001, RA4A9E-009; REQ-002: RA4A9E-001, RA4A9E-009; REQ-003: RA4A9E-001, RA4A9E-009; REQ-004: RA4A9E-001, RA4A9E-002, RA4A9E-009; REQ-005: RA4A9E-001, RA4A9E-009; REQ-006: RA4A9E-001, RA4A9E-009; REQ-007: RA4A9E-002, RA4A9E-009; REQ-008: RA4A9E-003, RA4A9E-009; REQ-009: RA4A9E-003, RA4A9E-004, RA4A9E-009; REQ-010: RA4A9E-005, RA4A9E-009; REQ-011: RA4A9E-005, RA4A9E-009; REQ-012: RA4A9E-005, RA4A9E-009; REQ-013: RA4A9E-006, RA4A9E-009; REQ-014: RA4A9E-007, RA4A9E-009; REQ-015: RA4A9E-008, RA4A9E-009; REQ-016: RA4A9E-007, RA4A9E-008, RA4A9E-009; REQ-017: RA4A9E-008; REQ-018: RA4A9E-002, RA4A9E-003, RA4A9E-004, RA4A9E-005, RA4A9E-006, RA4A9E-007, RA4A9E-008, RA4A9E-009; REQ-019: RA4A9E-010; REQ-020: RA4A9E-010; REQ-021: RA4A9E-001, RA4A9E-009. Every approved requirement has at least one substantive proposed risk; this matrix does not attest verification."
+    }
+  ],
+  "items": [
+    {
+      "id": "RA4A9E-001",
+      "title": "Supplied sign-in appearance or control inventory drifts",
+      "description": "Risk/consequence: The sign-in card could omit or alter an observed label, placeholder, color/shape distinction, or footer, or add a visible sign-up or other control, failing wireframe acceptance and implying an unsupported journey. Proposed mitigation: Keep the white page and thin dark bordered card with bold Sign in heading, Email address field and name@example.com placeholder, Password field and masked-asterisks placeholder, blue underlined Forgot password? link, dark rectangular Sign in button, and grey No account? Contact your administrator. footer; allow no other visible card controls. Do not extrapolate reset-page design from the image. Proposed verification: Inspect/render these visible elements and absence of other card controls against the supplied observations; plan automated element/control assertions where feasible.",
+      "category": "wireframe fidelity",
+      "priority": "should",
+      "requirement_ids": ["REQ-001", "REQ-002", "REQ-003", "REQ-004", "REQ-005", "REQ-006", "REQ-021"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}
+      ]
+    },
+    {
+      "id": "RA4A9E-002",
+      "title": "Visible recovery link does not start a request",
+      "description": "Risk/consequence: A visually correct Forgot password? link could be inert or lead nowhere, preventing users from initiating recovery. Proposed mitigation: Connect the observed link to a minimal reset-request interaction without adding another control to the sign-in card. Proposed verification: Activate Forgot password? from the sign-in page in an automated interaction test and confirm a reset request can be initiated.",
+      "category": "recovery entry",
+      "priority": "must",
+      "requirement_ids": ["REQ-004", "REQ-007", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-003",
+      "title": "Reset requests disclose account existence",
+      "description": "Risk/consequence: Different returned responses to otherwise equivalent reset requests for a synthetic account and a nonexistent address, including at the issuance limit, could disclose account existence. The standard does not settle nonexistent-address accounting. Proposed mitigation: Return identical responses for otherwise equivalent existing/nonexistent submissions and preserve response parity when issuance for a synthetic account is limited; do not invent a separate nonexistent-address threshold. Proposed verification: Compare returned responses for otherwise equivalent existing/nonexistent submissions and at the existing account's sixth request within the hour; confirm that request yields no additional usable link while preserving response equivalence. Response parity alone does not establish that every possible side channel is absent.",
+      "category": "request privacy",
+      "priority": "must",
+      "requirement_ids": ["REQ-008", "REQ-009", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-004",
+      "title": "Per-account issuance exceeds the hourly request limit",
+      "description": "Risk/consequence: Miscounting the approved five requests per synthetic account per hour could issue a sixth usable link within that hour and defeat the request limit. Proposed mitigation: Track requests against the five-per-account-per-hour boundary for synthetic accounts with an explicitly testable one-hour window, without asserting a rule for nonexistent-address keys. Proposed verification: Exercise requests one through five and a sixth for one synthetic account within an hour; confirm the sixth produces no additional usable link, retains REQ-008 response equivalence, and applies the one-hour rather than an arbitrary shorter window.",
+      "category": "request limits",
+      "priority": "must",
+      "requirement_ids": ["REQ-009", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-005",
+      "title": "Reset link reuse, expiry, or password change is mishandled",
+      "description": "Risk/consequence: Reusing a link might change a password again, a link might remain valid at or after T+30 minutes from issuance or expire prematurely, or a valid completion might not change the corresponding synthetic account password. Proposed mitigation: Associate each link with its synthetic account and issuance time, permit at most one successful completion, and expire it at 30 minutes measured from issuance rather than access; keep completion minimal without inventing a password-complexity rule. Proposed verification: Exercise otherwise valid unused links just before and at T+30 minutes from issuance; only the former should remain unexpired. Complete a valid reset, confirm the corresponding account password changes, then retry the same link and confirm it cannot complete another reset.",
+      "category": "link lifecycle",
+      "priority": "must",
+      "requirement_ids": ["REQ-010", "REQ-011", "REQ-012", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-006",
+      "title": "Successful reset leaves active sessions signed in",
+      "description": "Risk/consequence: If any previously active session survives a successful password reset, a prior signed-in client remains active contrary to the all-session sign-out requirement. Proposed mitigation: Associate the minimal local synthetic session representation with its account and invalidate every active session on successful reset; do not assert production session infrastructure. Proposed verification: Establish multiple active sessions for one synthetic account, complete a successful reset, and confirm none of its previously active sessions remains signed in.",
+      "category": "session invalidation",
+      "priority": "must",
+      "requirement_ids": ["REQ-013", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-007",
+      "title": "Owner notification is missing after a successful reset",
+      "description": "Risk/consequence: A successful reset could lack an owner-directed notification, or only the first of multiple successes could be recorded; actual external delivery would also exceed the demonstration boundary. Proposed mitigation: Record an owner-directed notification for each successful reset in the in-memory sink using a locally test-inspectable mechanism, without claiming email or SMS delivery. Proposed verification: Complete separate successful resets using distinct links and inspect the in-memory sink after each to confirm each success has an owner-directed record without requiring a production service.",
+      "category": "notification",
+      "priority": "must",
+      "requirement_ids": ["REQ-014", "REQ-016", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-008",
+      "title": "Demonstration boundaries are hidden or overstated",
+      "description": "Risk/consequence: Real-user accounts, an external notification dependency, or missing production-limitations documentation could violate demonstration scope or suggest production readiness. Proposed mitigation: Use synthetic accounts and in-memory notifications only; document both limits and any further implementation-specific limits once known, without implying persistence, actual delivery, or production guarantees. Proposed verification: Inspect account fixtures and notification mechanism; inspect the production-limitations section for both explicit constraints and absence of a production-readiness claim; plan automated checks for the synthetic and in-memory boundaries.",
+      "category": "demonstration scope",
+      "priority": "should",
+      "requirement_ids": ["REQ-015", "REQ-016", "REQ-017", "REQ-018"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ]
+    },
+    {
+      "id": "RA4A9E-009",
+      "title": "Automated tests omit approved acceptance boundaries",
+      "description": "Risk/consequence: A happy-path-only suite could miss sign-in appearance or extra controls, inert recovery entry, response disclosure, hourly request limit, link reuse or expiry, password change, all-session invalidation, notification after every success, or synthetic/in-memory boundaries; acceptance would remain unverified. Proposed mitigation: Plan automated tests against REQ-018 and each linked approved requirement, including negative and time-boundary cases; base visual assertions only on supplied observations rather than invented pixel specifications. Proposed verification: Review and run the planned suite for observed card elements/no other controls, recovery entry, existing/nonexistent response parity, five-per-account-per-hour boundary, single-use and T+30-minute issuance expiry, correct password change, all-session sign-out, every-success notification, and synthetic/in-memory behavior. These are proposed checks, not tests already run.",
+      "category": "acceptance coverage",
+      "priority": "must",
+      "requirement_ids": ["REQ-001", "REQ-002", "REQ-003", "REQ-004", "REQ-005", "REQ-006", "REQ-007", "REQ-008", "REQ-009", "REQ-010", "REQ-011", "REQ-012", "REQ-013", "REQ-014", "REQ-015", "REQ-016", "REQ-018", "REQ-021"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ]
+    },
+    {
+      "id": "RA4A9E-010",
+      "title": "Delivery breaches the no-deployment boundary",
+      "description": "Risk/consequence: Deploying the application or adding a deployment workflow would violate two separate approved prohibitions even if the local demonstration works. Proposed mitigation: Keep the delivery local and exclude both deployment actions and additions of deployment workflows. Proposed verification: Review delivered actions and artifacts for absence of application deployment (REQ-019) and separately inspect workflow changes for absence of newly added deployment workflows (REQ-020); do not deploy as a verification step.",
+      "category": "delivery boundary",
+      "priority": "must",
+      "requirement_ids": ["REQ-019", "REQ-020"],
+      "related_ids": [],
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ]
+    }
+  ]
+}
