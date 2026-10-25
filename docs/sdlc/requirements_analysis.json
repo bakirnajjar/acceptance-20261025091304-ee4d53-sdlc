@@ -12,7 +12,8 @@
     "Reset links and notifications are accessible through an in-memory, test-inspectable mechanism for synthetic accounts; no email, SMS, or external delivery service is assumed.",
     "The production-limitations document explains synthetic-account and in-memory-notification constraints and any implementation-specific limitations once known; it does not claim production readiness.",
     "A minimal reset-completion interaction changes a synthetic account password; no password complexity rule, numeric policy, failure wording, or additional control on the supplied sign-in wireframe is assumed.",
-    "acceptance-20261025091304-ee4d53-skill-sentinel: the acceptance skill produced this output."
+    "acceptance-20261025091304-ee4d53-skill-sentinel: the acceptance skill produced this output.",
+    "acceptance-20261025091304-ee4d53-same-agent-revision: the 30-minute reset-link boundary is measured from issuance."
   ],
   "open_questions": [
     {
@@ -129,8 +130,8 @@
     },
     {
       "id": "REQ-011",
-      "statement": "Expire each reset link 30 minutes after it is issued.",
-      "acceptance_criteria": ["Given a reset link was issued 30 minutes ago or earlier, when it is used to attempt a password reset, then the reset is not completed using that expired link."],
+      "statement": "Keep each reset link unexpired before 30 minutes from issuance and expire it at 30 minutes from issuance.",
+      "acceptance_criteria": ["Given an otherwise valid unused reset link issued at time T, when a reset is attempted before T plus 30 minutes, then the link is unexpired; when a reset is attempted at or after T plus 30 minutes, then the link cannot complete a reset."],
       "source_references": [
         {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
       ]

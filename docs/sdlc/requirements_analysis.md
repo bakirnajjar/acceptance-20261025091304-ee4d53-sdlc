@@ -68,8 +68,8 @@ The story is complete, with no end marker; no attachment acceptance marker is pr
 **Sources:** S, K
 
 ### REQ-011
-**Statement:** Expire each reset link 30 minutes after it is issued.  
-**Acceptance criterion:** Given a reset link was issued 30 minutes ago or earlier, when it is used to attempt a password reset, then the reset is not completed using that expired link.  
+**Statement:** Keep each reset link unexpired before 30 minutes from issuance and expire it at 30 minutes from issuance.  
+**Acceptance criterion:** Given an otherwise valid unused reset link issued at time T, when a reset is attempted before T plus 30 minutes, then the link is unexpired; when a reset is attempted at or after T plus 30 minutes, then the link cannot complete a reset.  
 **Sources:** K
 
 ### REQ-012
@@ -130,6 +130,7 @@ The story is complete, with no end marker; no attachment acceptance marker is pr
 4. The production-limitations document explains synthetic-account and in-memory-notification constraints and any implementation-specific limitations once known; it does not claim production readiness.
 5. A minimal reset-completion interaction changes a synthetic account password; no password complexity rule, numeric policy, failure wording, or additional control on the supplied sign-in wireframe is assumed.
 6. acceptance-20261025091304-ee4d53-skill-sentinel: the acceptance skill produced this output.
+7. acceptance-20261025091304-ee4d53-same-agent-revision: the 30-minute reset-link boundary is measured from issuance.
 
 ## Open questions
 
