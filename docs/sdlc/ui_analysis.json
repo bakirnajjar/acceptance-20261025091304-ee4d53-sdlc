@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "stage": "ui_analysis",
+  "applicability": "applicable",
+  "findings": [
+    {
+      "statement": "Observed: A white page contains a thin dark bordered card with a bold Sign in heading.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-001"]
+    },
+    {
+      "statement": "Observed: The card has an Email address label and input showing the name@example.com placeholder.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-002"]
+    },
+    {
+      "statement": "Observed: The card has a Password label and input illustrated with masked asterisks; the image does not establish functional masking or the field's actual placeholder behavior.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-003"]
+    },
+    {
+      "statement": "Observed: A blue underlined Forgot password? link is visible on the card; its activation is not depicted.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-004"]
+    },
+    {
+      "statement": "Observed: A dark rectangular Sign in button is visible; submission and sign-in outcomes are not depicted.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-005"]
+    },
+    {
+      "statement": "Observed: Grey footer text reads No account? Contact your administrator.; no footer interaction is established.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-006"]
+    },
+    {
+      "statement": "Observed: The only visible card controls are the email input, password input, Forgot password? link, and Sign in button; no other card controls are shown. No other screen, interaction, focus, error, loading, responsive behavior, or exact design token is evidenced.",
+      "provenance": "Observed",
+      "source_references": [{"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}],
+      "requirement_ids": ["REQ-021"]
+    },
+    {
+      "statement": "Proposed: Activating the pictured Forgot password? link starts a separate reset-request interaction without adding a visible control to the sign-in card; the static image establishes the link's presence, not navigation.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"},
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ],
+      "requirement_ids": ["REQ-007", "REQ-021"]
+    },
+    {
+      "statement": "Proposed: A reset-request screen accepts an account identifier and returns the same neutral request response for an existing or nonexistent account, with no account-existence clue in its response content; a neutral acknowledgment is not confirmation that a link exists.",
+      "provenance": "Proposed",
+      "source_references": [{"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}],
+      "requirement_ids": ["REQ-007", "REQ-008"]
+    },
+    {
+      "statement": "Proposed: Enforce five reset requests per synthetic account per hour behind the UI; another request within that hour must not create another usable link, while its returned request response stays consistent with the identical-response rule. This limit is not an observed control or a specified nonexistent-account accounting rule.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"},
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ],
+      "requirement_ids": ["REQ-008", "REQ-009", "REQ-015"]
+    },
+    {
+      "statement": "Proposed: A valid-link reset-completion interaction accepts a new password for the corresponding synthetic account only while an unused link is valid. A link works before issuance plus 30 minutes, cannot reset at or after that boundary, and cannot complete a second reset after successful use; present invalid, expired, or used-link recovery guidance without claiming a depicted form or password policy.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"},
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ],
+      "requirement_ids": ["REQ-010", "REQ-011", "REQ-012"]
+    },
+    {
+      "statement": "Proposed: Following every successful reset, invalidate all active sessions for that account and record an owner notification for that success. A completion result can guide return to sign-in; it must not imply an old session remains authenticated or that notification is delivered through a production service. These are application effects, not observed UI.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"},
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ],
+      "requirement_ids": ["REQ-013", "REQ-014", "REQ-016"]
+    },
+    {
+      "statement": "Proposed: Limit the demonstration to synthetic accounts, with reset links and owner notifications test-inspectable in memory; do not represent a link or owner notification as externally delivered. These boundaries have no direct visual evidence.",
+      "provenance": "Proposed",
+      "source_references": [{"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}],
+      "requirement_ids": ["REQ-015", "REQ-016"]
+    },
+    {
+      "statement": "Proposed: Document production limitations, including synthetic accounts and in-memory notifications, and provide automated tests for the observed sign-in inventory and specified reset behaviors. Documentation and test completion are nonvisual obligations, not shown or verified by the wireframe.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ],
+      "requirement_ids": ["REQ-017", "REQ-018"]
+    },
+    {
+      "statement": "Proposed: Do not deploy the application or add deployment workflows; these delivery constraints have no on-screen representation or visual evidence.",
+      "provenance": "Proposed",
+      "source_references": [{"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}],
+      "requirement_ids": ["REQ-019", "REQ-020"]
+    },
+    {
+      "statement": "Proposed: On the sign-in screen, distinguish empty fields, locally invalid identifiers and invalid synthetic credentials using labeled textual feedback; announce pending submission and a minimal local success/result without adding permanent visible controls to the pictured card. The exact sign-in outcome, validation rules, and copy remain undecided.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"}
+      ],
+      "requirement_ids": ["REQ-001", "REQ-002", "REQ-003", "REQ-005", "REQ-021"]
+    },
+    {
+      "statement": "Proposed: On the reset-request screen, identify empty or locally invalid input accessibly without testing account existence in field errors; communicate pending submission and generic service failure. The ordinary completed-request acknowledgment, including a rate-limited request, must preserve the same response for existing and nonexistent accounts.",
+      "provenance": "Proposed",
+      "source_references": [{"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}],
+      "requirement_ids": ["REQ-007", "REQ-008", "REQ-009"]
+    },
+    {
+      "statement": "Proposed: Treat the neutral acknowledgment as a distinct no-input result state: its returned content must not confirm account existence, link generation, or delivery; any loading or generic error must not reveal account-specific status.",
+      "provenance": "Proposed",
+      "source_references": [{"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}],
+      "requirement_ids": ["REQ-008", "REQ-009"]
+    },
+    {
+      "statement": "Proposed: On reset completion/result, prompt for an empty new password, show pending submission without duplicate completion, and provide accessible recovery guidance for invalid, expired, or used links. Only a valid unused link before issuance plus 30 minutes can lead to a successful password-change result; exact form fields, policy, and wording remain open.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"},
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"}
+      ],
+      "requirement_ids": ["REQ-010", "REQ-011", "REQ-012"]
+    },
+    {
+      "statement": "Proposed: Across sign-in and proposed recovery screens, enable logical keyboard order and activation, visible focus, programmatic labels and discernible link/button names, field-linked textual errors, and screen-reader announcements for progress and results without account disclosure. Check contrast for the depicted blue link, grey footer and dark button as well as proposed errors and focus states; no conformance or color tokens can be inferred from the image.",
+      "provenance": "Proposed",
+      "source_references": [
+        {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"},
+        {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+        {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+      ],
+      "requirement_ids": ["REQ-002", "REQ-003", "REQ-004", "REQ-005", "REQ-007", "REQ-008", "REQ-010", "REQ-011", "REQ-012", "REQ-021"]
+    }
+  ],
+  "not_applicable_reason": null,
+  "source_references": [
+    {"source_type": "user_story", "source_id": "user_story", "locator": "characters 0-16000"},
+    {"source_type": "attachment", "source_id": "a4690c70-e0db-4bb7-b5c0-f0422127e023", "locator": "sign-in-wireframe.png"},
+    {"source_type": "knowledge", "source_id": "46054aed-d642-45cb-ac91-e8bb053c4af6", "locator": "v1, chunk 0"}
+  ],
+  "assumptions": [
+    "Observed details are limited to the supplied sign-in wireframe. No interactivity, other screen, responsive layout, error or focus state, or design token is inferred from the static image.",
+    "The approved requirements were read for their identifiers and text, but the stage-output reader supplied no source-reference locator; no stage_output citation is fabricated.",
+    "Only minimal local synthetic-account sign-in/session behavior is contemplated to exercise sign-in and all-session invalidation; no production session infrastructure is assumed.",
+    "The specified five-per-account-per-hour limit applies to synthetic accounts while returned request responses remain identical for existing and nonexistent accounts; counting and throttling nonexistent identifiers is unresolved.",
+    "Links and owner notifications are inspectable through a local in-memory mechanism; no external link transport or production email/SMS delivery is assumed.",
+    "A minimal reset-completion interaction changes the synthetic account password; no password complexity policy, confirmation field, pixel-exact layout, or additional permanent sign-in-card control is assumed."
+  ],
+  "open_questions": [
+    {"question": "What layout and exact neutral acknowledgment copy should the proposed recovery screens use, and should the identifier be re-entered or carried forward?", "blocking": false, "context": "The wireframe shows only sign-in. Any carried identifier must not vary the existing/nonexistent request response."},
+    {"question": "How will local synthetic-account reset links be surfaced and the in-memory notification sink inspected?", "blocking": false, "context": "Do not imply an external delivery channel or disclose account existence in the request response."},
+    {"question": "How should nonexistent identifiers be counted or throttled without disclosing account existence?", "blocking": false, "context": "The standard specifies five requests per account per hour but does not define a nonexistent-account key or threshold."},
+    {"question": "What are the new-password fields, password policy, and expired/used-link recovery wording?", "blocking": false, "context": "No recovery form or password complexity rule is provided by the wireframe or standard."},
+    {"question": "What is the sign-in success destination and how will multiple local sessions be represented and verified?", "blocking": false, "context": "Only a minimal synthetic-account session behavior is assumed; the sign-in button's behavior is not pictured."},
+    {"question": "What responsive layout, contrast tokens, focus placement, and screen-reader announcements should be adopted?", "blocking": false, "context": "The static wireframe supplies neither responsive states nor measurable accessibility behavior."}
+  ]
+}
